@@ -1,0 +1,33 @@
+project:
+  version: '@project.version@'
+
+api:
+  version: /v1
+
+server:
+  servlet:
+    context-path: /case
+
+spring:
+  jpa:
+    database: H2
+    show-sql: false
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      pool-name: SGIHikari
+      maximum-pool-size: 10
+      auto-commit: false
+
+config:
+  retry:
+    maxAttempts: 3
+    maxDelay: 4000
+    multiplier: 0.3
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+

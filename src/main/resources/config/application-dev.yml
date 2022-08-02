@@ -1,0 +1,32 @@
+spring:
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+    add-properties: true
+  jpa:
+    show-sql: true
+  jackson:
+    serialization:
+      indent-output: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://kc-dev.contagroup.com.br/auth/realms/PartnerBank-DEV
+          jwk-set-uri: https://kc-dev.contagroup.com.br/auth/realms/PartnerBank-DEV/protocol/openid-connect/certs
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+server:
+  port: 8080
+
+keycloak:
+  realm: PartnerBank-DEV
+  resource: onboarding-sgi
+  auth-server-url: https://kc-dev.contagroup.com.br/auth/
+  ssl-required: none
+  public-client: true
+  principal-attribute: preferred_username
+  cors: true
