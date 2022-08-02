@@ -1,9 +1,6 @@
 package br.com.sgi.controller;
 
 
-import br.com.sgi.controller.dto.ProductRequestDTO;
-import br.com.sgi.service.ProductService;
-import br.com.sgi.service.dto.ProductDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

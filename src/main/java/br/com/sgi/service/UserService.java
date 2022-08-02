@@ -1,9 +1,9 @@
 package br.com.sgi.service;
 
-import br.com.sgi.entity.transformer.UserTransformer;
-import br.com.sgi.repository.UserRepository;
 import br.com.sgi.controller.dto.UserRequestDTO;
 import br.com.sgi.entity.User;
+import br.com.sgi.entity.transformer.UserTransformer;
+import br.com.sgi.repository.UserRepository;
 import br.com.sgi.service.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;

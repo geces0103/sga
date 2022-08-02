@@ -1,7 +1,6 @@
 package br.com.sgi.controller;
 
 
-import br.com.sgi.service.UserService;
 import br.com.sgi.controller.dto.UserRequestDTO;
 import br.com.sgi.service.UserService;
 import br.com.sgi.service.dto.UserDTO;
