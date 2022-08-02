@@ -14,18 +14,18 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://kc-dev.contagroup.com.br/auth/realms/PartnerBank-DEV
-          jwk-set-uri: https://kc-dev.contagroup.com.br/auth/realms/PartnerBank-DEV/protocol/openid-connect/certs
+          issuer-uri: http://localhost:8080/auth/realms/SGI
+          jwk-set-uri: http://localhost:8080/realms/SGI/protocol/openid-connect/certs
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
 server:
-  port: 8080
+  port: 9090
 
 keycloak:
-  realm: PartnerBank-DEV
-  resource: onboarding-sgi
-  auth-server-url: https://kc-dev.contagroup.com.br/auth/
+  realm: SGI
+  resource: sgi-client
+  auth-server-url: http://localhost:8080/auth/
   ssl-required: none
   public-client: true
   principal-attribute: preferred_username

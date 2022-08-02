@@ -6,7 +6,7 @@ api:
 
 server:
   servlet:
-    context-path: /case
+    context-path: /sgi
 
 spring:
   jpa:

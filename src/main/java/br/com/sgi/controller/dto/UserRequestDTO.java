@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+import org.springframework.data.annotation.CreatedDate;
 
+import javax.persistence.Column;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,14 +16,19 @@ public class UserRequestDTO {
     @NonNull
     private Long id;
     @NonNull
-    private String identifier;
+    private String username;
     @NonNull
-    private String name;
+    private String description;
     @NonNull
-    private String document;
-    @NonNull
+    private String email;
+
     private LocalDateTime creation;
-    @NonNull
+
     private LocalDateTime updated;
+
+    @NonNull
+    private String hashPassword;
+
+    private Boolean active;
 
 }

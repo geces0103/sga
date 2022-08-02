@@ -22,14 +22,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "identifier")
-    private String identifier;
-
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "document")
-    private String document;
+    @Column(name = "description")
+    private String description;
 
     @CreatedDate
     @Column(name = "creation")
@@ -37,5 +31,17 @@ public class User {
 
     @Column(name = "updated")
     private LocalDateTime updated;
+
+    @Column(name = "username", length = 128, nullable = false, unique = true)
+    private String username;
+
+    @Column(name = "email", length = 128)
+    private String email;
+
+    @Column(name = "hash_password")
+    private String hashPassword;
+
+    @Column(name = "active", nullable = false)
+    private Boolean active = true;
 
 }
