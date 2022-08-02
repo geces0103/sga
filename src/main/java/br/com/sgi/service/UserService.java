@@ -85,7 +85,7 @@ public class UserService {
 
     public List<UserDTO> findByName(String name) {
 
-        var list = userRepository.findByName(name).stream()
+        var list = userRepository.findByUsername(name).stream()
                 .map(userTransformer::toDTO).collect(Collectors.toList());
 
         if (!CollectionUtils.isEmpty(list)) {

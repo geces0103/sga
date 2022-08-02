@@ -39,7 +39,7 @@ public class UserController {
         return ResponseEntity.ok(this.userService.findById(id));
     }
 
-    @GetMapping("/name")
+    @GetMapping("/username")
     public ResponseEntity<List<UserDTO>> getProductByUsername(@RequestParam(value="username") String name) {
         return ResponseEntity.ok(this.userService.findByName(name));
     }
