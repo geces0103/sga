@@ -14,8 +14,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8080/auth/realms/SGI
-          jwk-set-uri: http://localhost:8080/realms/SGI/protocol/openid-connect/certs
+          issuer-uri: http://54.226.71.50/auth/realms/master
+          jwk-set-uri: http://54.226.71.50/realms/SGI/protocol/openid-connect/certs
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -23,9 +23,9 @@ server:
   port: 9090
 
 keycloak:
-  realm: SGI
+  realm: master
   resource: sgi-client
-  auth-server-url: http://localhost:8080/auth/
+  auth-server-url: http://54.226.71.50/auth/
   ssl-required: none
   public-client: true
   principal-attribute: preferred_username

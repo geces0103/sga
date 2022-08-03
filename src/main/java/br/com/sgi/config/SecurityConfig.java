@@ -38,7 +38,7 @@ import java.util.List;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
-    public static final String USERS = "/v1/users/";
+    public static final String USERS = "/v1/users/**";
 
 
     private final RestAccessDeniedHandler restAccessDeniedHandler;
