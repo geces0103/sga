@@ -55,8 +55,8 @@ class UserControllerIT extends AbstractTest {
 
         UserDTO dto = mapper.readValue(response.getContentAsString(), UserDTO.class);
 
-        assertThat(dto.getName()).isEqualTo(ANY_NAME);
-        assertThat(dto.getDocument()).isEqualTo(ANY_DESCRIPTION);
+        assertThat(dto.getDescription()).isEqualTo(ANY_DESCRIPTION);
+        assertThat(dto.getUsername()).isEqualTo(ANY_DESCRIPTION);
     }
 
     @Test
@@ -64,11 +64,11 @@ class UserControllerIT extends AbstractTest {
         User user = createUserToTest();
         UserRequestDTO userRequestDTO = UserRequestDTO.builder()
                 .id(user.getId())
-                .identifier(ANY_DESCRIPTION)
+                .username(ANY_DESCRIPTION)
                 .creation(LocalDateTime.now())
                 .updated(LocalDateTime.now().plusDays(15))
-                .name(ANY_NAME)
-                .document(ANY_DESCRIPTION)
+                .username(ANY_NAME)
+                .description(ANY_DESCRIPTION)
                 .build();
 
         MockHttpServletResponse response = mvc.perform(put(versionApi + BASE_URI)
@@ -80,7 +80,7 @@ class UserControllerIT extends AbstractTest {
 
         UserDTO dto = mapper.readValue(response.getContentAsString(), UserDTO.class);
 
-        assertThat(dto.getName()).isEqualTo(ANY_NAME);
+        assertThat(dto.getUsername()).isEqualTo(ANY_NAME);
     }
 
     @Test
@@ -102,9 +102,8 @@ class UserControllerIT extends AbstractTest {
     private User createUserToTest() {
         User user = createUser();
         user.setId(null);
-        user.setIdentifier(ANY_DESCRIPTION);
-        user.setDocument(ANY_DESCRIPTION);
-        user.setName(ANY_NAME);
+        user.setDescription(ANY_DESCRIPTION);
+        user.setUsername(ANY_NAME);
         user.setCreation(LocalDateTime.now());
         user.setUpdated(LocalDateTime.now().plusDays(15));
 

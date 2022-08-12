@@ -73,7 +73,7 @@ class UserServiceTest extends AbstractTest {
         doReturn(Optional.of(user)).when(userRepository).findById(anyLong());
 
         userService.update(request);
-        assertThat(user.getName()).isEqualTo(request.getName());
+        assertThat(user.getUsername()).isEqualTo(request.getUsername());
 
         verify(userRepository).findById(anyLong());
     }
@@ -91,7 +91,7 @@ class UserServiceTest extends AbstractTest {
         EntityExistsException ex = assertThrows(EntityExistsException.class, () -> userService.create(dto));
 
         verify(userRepository).save(any(User.class));
-        assertThat(ex.getMessage()).isEqualTo("User already exists: " + dto.getName());
+        assertThat(ex.getMessage()).isEqualTo("User already exists: " + dto.getUsername());
     }
 
     @Test
@@ -125,7 +125,7 @@ class UserServiceTest extends AbstractTest {
         when(userRepository.findById(anyLong())).thenReturn(Optional.of(user));
 
         UserDTO dto = userService.findById(1L);
-        assertThat(dto.getName()).isEqualTo(user.getName());
+        assertThat(dto.getUsername()).isEqualTo(user.getUsername());
 
         verify(userRepository).findById(anyLong());
     }
