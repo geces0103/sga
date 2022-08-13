@@ -15,7 +15,7 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://54.226.71.50/auth/realms/master
-          jwk-set-uri: http://54.226.71.50/realms/SGI/protocol/openid-connect/certs
+          jwk-set-uri: http://54.226.71.50/auth/realms/master/protocol/openid-connect/certs
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher

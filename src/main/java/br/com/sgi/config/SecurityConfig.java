@@ -38,7 +38,12 @@ import java.util.List;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
-    public static final String USERS = "/v1/users/**";
+    public static final String USERS = "/v1/users/te";
+    public static final String USERS_GET = "/v1/users/username";
+    public static final String USERS_POST = "/v1/users/";
+    public static final String USERS_GET_ALL = "/v1/users/all";
+    public static final String USERS_UPDATE = "/v1/users/";
+    public static final String USERS_GET_ORDERED = "/v1/users/ordered";
 
 
     private final RestAccessDeniedHandler restAccessDeniedHandler;
@@ -93,32 +98,27 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http
-            .csrf()
-            .disable()
-            .exceptionHandling().accessDeniedHandler(restAccessDeniedHandler)
-            .and()
-            .headers()
-            .referrerPolicy(ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN)
-            .and()
-            .frameOptions()
-            .deny()
-            .and()
+                .csrf()
+                .disable()
+                .exceptionHandling().accessDeniedHandler(restAccessDeniedHandler)
+                .and()
+                .headers()
+                .referrerPolicy(ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN)
+                .and()
+                .frameOptions()
+                .deny()
+                .and()
 
-            // Garantindo Sessão Stateless
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .authorizeRequests()
-            .antMatchers(getUrlForbidden()).authenticated()
-            .antMatchers(USERS).hasRole("users")
-            .and().oauth2ResourceServer().jwt()
-            .jwtAuthenticationConverter(new CustomJwtAuthenticationConverter("sgi-client"));
+                // Garantindo Sessão Stateless
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .antMatchers().authenticated()
+                .antMatchers(USERS).hasAuthority("users")
+                .and().oauth2ResourceServer().jwt()
+                .jwtAuthenticationConverter(new CustomJwtAuthenticationConverter("sgi-client"));
 
     }
 
-    private String[] getUrlForbidden() {
-        List<String> paths = new ArrayList<>();
-        paths.add(USERS);
-        return paths.toArray(String[]::new);
-    }
 }
