@@ -1,0 +1,19 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:hsqldb:mem:data/sgidb;shutdown=true;sql.syntax_mys=true;hsqldb.write_delay=false
+    username: root
+    password: root
+  jpa:
+    database: HSQL
+    database-platform: org.hibernate.dialect.HSQLDialect
+    hibernate.ddl-auto: create
+    show-sql: true
+
+
+security.jwt:
+  secret: SM3NGfHVVM37QyolxjmkQJgE_MwaojsDbSNLcpi4h_Q
+  expiration: 14400000
+
+
