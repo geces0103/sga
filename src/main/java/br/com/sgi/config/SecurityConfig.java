@@ -38,12 +38,13 @@ import java.util.List;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
-    public static final String USERS = "/v1/users/te";
-    public static final String USERS_GET = "/v1/users/username";
+    public static final String USERS_DELETE = "/v1/users/";
+    public static final String USERS_GET_USERNAME = "/v1/users/username";
     public static final String USERS_POST = "/v1/users/";
     public static final String USERS_GET_ALL = "/v1/users/all";
     public static final String USERS_UPDATE = "/v1/users/";
     public static final String USERS_GET_ORDERED = "/v1/users/ordered";
+    public static final String USERS_GET_ID = "/v1/users/all";
 
 
     private final RestAccessDeniedHandler restAccessDeniedHandler;
@@ -98,27 +99,17 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http
-                .csrf()
-                .disable()
-                .exceptionHandling().accessDeniedHandler(restAccessDeniedHandler)
-                .and()
-                .headers()
-                .referrerPolicy(ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN)
-                .and()
-                .frameOptions()
-                .deny()
-                .and()
-
-                // Garantindo Sessão Stateless
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
+        .authorizeRequests()
                 .antMatchers().authenticated()
-                .antMatchers(USERS).hasAuthority("users")
+                .antMatchers(USERS_GET_ALL).hasAnyRole("user_GET_ALL")
+                .antMatchers(USERS_GET_ID).hasAnyRole("user_GET_ID")
+                .antMatchers(USERS_GET_ORDERED).hasAnyRole("user_GET_ORDERED")
+                .antMatchers(USERS_UPDATE).hasAnyRole("user_UPDATE")
+                .antMatchers(USERS_POST).hasAnyRole("user_CREATE")
+                .antMatchers(USERS_DELETE).hasAnyRole("user_DELETE")
+                .antMatchers(USERS_GET_USERNAME).hasAnyRole("user_GET_USERNAME")
+
                 .and().oauth2ResourceServer().jwt()
                 .jwtAuthenticationConverter(new CustomJwtAuthenticationConverter("sgi-client"));
-
     }
-
 }

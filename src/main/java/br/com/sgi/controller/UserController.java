@@ -16,7 +16,7 @@ import java.util.Set;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(path = "${api.version}/users", produces = APPLICATION_JSON_VALUE)
+@RequestMapping(path = "v1/users", produces = APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class UserController {
 
@@ -48,7 +48,7 @@ public class UserController {
         this.userService.deleteById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<UserDTO>> getAll() {
         return ResponseEntity.ok(this.userService.findAll());
     }
