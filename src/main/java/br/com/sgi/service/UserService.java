@@ -29,6 +29,7 @@ public class UserService {
         try {
             return userTransformer.toDTO(
                     userRepository.save(User.builder()
+                            .id(dto.getId())
                             .username(dto.getUsername())
                             .description(dto.getDescription())
                             .email(dto.getEmail())
