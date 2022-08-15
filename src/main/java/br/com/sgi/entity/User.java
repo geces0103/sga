@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tb_user")
-public class User {
+public class User implements Comparable<User> {
 
     @Id
     @Column(name = "id")
@@ -44,4 +44,8 @@ public class User {
     @Column(name = "active", nullable = false)
     private Boolean active;
 
+    @Override
+    public int compareTo(User other) {
+        return this.username.compareTo(other.getUsername());
+    }
 }
