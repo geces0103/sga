@@ -41,7 +41,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     public static final String USERS_DELETE = "/v1/users/";
     public static final String USERS_GET_USERNAME = "/v1/users/username";
     public static final String USERS_POST = "/v1/users/";
-    public static final String USERS_GET_ALL = "/v1/users/all";
+    public static final String USERS_GET_ALL = "/v1/users";
     public static final String USERS_UPDATE = "/v1/users/";
     public static final String USERS_GET_ORDERED = "/v1/users/ordered";
     public static final String USERS_GET_ID = "/v1/users/all";
