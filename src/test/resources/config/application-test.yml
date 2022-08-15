@@ -10,7 +10,12 @@ spring:
     database-platform: org.hibernate.dialect.HSQLDialect
     hibernate.ddl-auto: create
     show-sql: true
-
+security:
+  oauth2:
+    resourceserver:
+      jwt:
+        issuer-uri: http://54.226.71.50/auth/realms/master
+        jwk-set-uri: http://54.226.71.50/auth/realms/master/protocol/openid-connect/certs
 
 security.jwt:
   secret: SM3NGfHVVM37QyolxjmkQJgE_MwaojsDbSNLcpi4h_Q

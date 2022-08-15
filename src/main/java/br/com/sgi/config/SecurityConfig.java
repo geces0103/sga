@@ -46,7 +46,6 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     public static final String USERS_GET_ORDERED = "/v1/users/ordered";
     public static final String USERS_GET_ID = "/v1/users/all";
 
-
     private final RestAccessDeniedHandler restAccessDeniedHandler;
     private final CustomKeycloakAuthenticationHandler customKeycloakAuthenticationHandler;
 
@@ -98,18 +97,34 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
-        http
-        .authorizeRequests()
-                .antMatchers().authenticated()
-                .antMatchers(USERS_GET_ALL).hasAnyRole("user_GET_ALL")
-                .antMatchers(USERS_GET_ID).hasAnyRole("user_GET_ID")
-                .antMatchers(USERS_GET_ORDERED).hasAnyRole("user_GET_ORDERED")
-                .antMatchers(USERS_UPDATE).hasAnyRole("user_UPDATE")
-                .antMatchers(USERS_POST).hasAnyRole("user_CREATE")
-                .antMatchers(USERS_DELETE).hasAnyRole("user_DELETE")
-                .antMatchers(USERS_GET_USERNAME).hasAnyRole("user_GET_USERNAME")
 
-                .and().oauth2ResourceServer().jwt()
-                .jwtAuthenticationConverter(new CustomJwtAuthenticationConverter("sgi-client"));
+        http
+            .csrf()
+            .disable()
+            .exceptionHandling().accessDeniedHandler(restAccessDeniedHandler)
+            .and()
+            .headers()
+            .referrerPolicy(ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN)
+            .and()
+            .frameOptions()
+            .deny()
+            .and()
+
+            // Garantindo Sessão Stateless
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .authorizeRequests()
+            .antMatchers().authenticated()
+            .antMatchers().authenticated()
+            .antMatchers(USERS_GET_ALL).hasAnyRole("user_GET_ALL")
+            .antMatchers(USERS_GET_ID).hasAnyRole("user_GET_ID")
+            .antMatchers(USERS_GET_ORDERED).hasAnyRole("user_GET_ORDERED")
+            .antMatchers(USERS_UPDATE).hasAnyRole("user_UPDATE")
+            .antMatchers(USERS_POST).hasAnyRole("user_CREATE")
+            .antMatchers(USERS_DELETE).hasAnyRole("user_DELETE")
+            .antMatchers(USERS_GET_USERNAME).hasAnyRole("user_GET_USERNAME")
+            .and().oauth2ResourceServer().jwt()
+            .jwtAuthenticationConverter(new CustomJwtAuthenticationConverter("sgi-client"));
     }
 }
