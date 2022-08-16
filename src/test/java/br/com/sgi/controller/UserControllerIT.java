@@ -27,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @Transactional
 class UserControllerIT extends AbstractTest {
+/*
 
     public static final String ANY_NAME = "anyName";
     private static final String ENCODING = "utf-8";
@@ -109,5 +110,6 @@ class UserControllerIT extends AbstractTest {
 
         return userRepository.save(user);
     }
+*/
 
 }
