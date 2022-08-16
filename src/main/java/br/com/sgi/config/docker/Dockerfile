@@ -1,7 +1,7 @@
 FROM adoptopenjdk/openjdk11:alpine
 
 # App Opções
-ENV APP_NAME="sga-0.0.1-SNAPSHOT" \
+ENV APP_NAME="sga-0.0.3" \
     APP_HOME=/opt/$APP_NAME \
     JAVA_OPTIONS=""
 
