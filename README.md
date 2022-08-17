@@ -12,13 +12,13 @@
 Docker steps script
 
  - pip3 install awscli
-            - aws configure set aws_access_key_id "AKIAZWWD4RGOLM7VF2CU"
-            - aws configure set aws_secret_access_key "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"
+            - aws configure set aws_access_key_id "xxxxxx"
+            - aws configure set aws_secret_access_key "xxxxxx"
             - eval $(aws ecr get-login --no-include-email --region us-east-1 | sed 's;https://;;g')
 	-./gradlew build -x test
-            - docker build -f src/main/java/br/com/sgi/config/docker/Dockerfile -t 667204487580.dkr.ecr.us-east-1.amazonaws.com/sgi:0.0.2 .
-            - docker push 667204487580.dkr.ecr.us-east-1.amazonaws.com/sgi:0.0.1-SNAPSHOT
-	docker pull 667204487580.dkr.ecr.us-east-1.amazonaws.com/sgi:0.0.1-SNAPSHOT
+            - docker build -f src/main/java/br/com/sgi/config/docker/Dockerfile -t xxxxxx/sgi:0.0.2 .
+            - docker push xxxxxx/sgi:0.0.1-SNAPSHOT
+	docker pull xxxxxx/sgi:0.0.1-SNAPSHOT
 
 docker run -d -p 8080:9090 -e "SPRING_PROFILES_ACTIVE=test" 
 
@@ -26,12 +26,12 @@ docker run -d -p 8080:9090 -e "SPRING_PROFILES_ACTIVE=test"
 FRONT END
 
 
-		aws configure set aws_access_key_id "AKIAZWWD4RGOLM7VF2CU"
-            - aws configure set aws_secret_access_key "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"
+		aws configure set aws_access_key_id "xxxxx"
+            - aws configure set aws_secret_access_key "xxxxxx"
             - eval $(aws ecr get-login --no-include-email --region us-east-1 | sed 's;https://;;g')
 	-npm install 
-            - docker build -t 667204487580.dkr.ecr.us-east-1.amazonaws.com/sgi-fe:0.1.0 .
-            - docker push 667204487580.dkr.ecr.us-east-1.amazonaws.com/sgi-fe:0.1.0
-	docker pull 667204487580.dkr.ecr.us-east-1.amazonaws.com/sgi-fe:0.1.0
+            - docker build -t xxxxxx/sgi-fe:0.1.0 .
+            - docker push xxxxxx/sgi-fe:0.1.0
+	docker pull xxxxxx/sgi-fe:0.1.0
 
 
